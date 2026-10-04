@@ -1,0 +1,54 @@
+Amazon Web Services (AWS) is a comprehensive, on-demand cloud computing platform provided by Amazon. 
+## Core Features
+
+* Cloud Computing: Offers over 200 fully featured services for computing, storage, networking, and databases.
+* Pay-as-you-go Pricing: Charges users only for the exact resources they consume, eliminating large upfront hardware expenses.
+* Global Infrastructure: Operates via a massive network of data centers distributed across geographic regions worldwide.
+* Scalability: Allows businesses to instantly scale their computing power or storage up and down based on real-time demand. 
+
+## Popular Services
+
+* Amazon EC2 (Elastic Compute Cloud): Provides resizable virtual servers for running applications.
+* Amazon S3 (Simple Storage Service): Delivers scalable and secure cloud storage for data backup and retrieval.
+* Amazon RDS (Relational Database Service): Simplifies setting up and maintaining relational databases in the cloud.
+* AWS Lambda: Runs code on-demand without requiring server management. 
+
+AWS Global Infrastructure
+
+Understanding AWS global infrastructure is essential for architecting resilient, low-latency applications.
+Regions
+
+    Physical locations worldwide where AWS clusters data centers
+    Examples: us-east-1 (N. Virginia), ap-south-1 (Mumbai)
+    Optimize latency by choosing regions close to your users
+    Minimize costs (pricing varies by region)
+    Meet data sovereignty and compliance requirements
+
+Availability Zones (AZs)
+
+    Multiple isolated locations within each region
+    Each AZ contains one or more discrete data centers with redundant power, networking, and connectivity
+    Ensures high availability and disaster recovery
+    Prevents single points of failure
+
+Edge Locations
+
+    Smaller data centers in major cities worldwide
+    Used by Amazon CloudFront (CDN) to cache content closer to end-users
+    Reduces latency for faster content delivery
+
+Shared Responsibility Model
+
+Security is AWS's top priority, with responsibilities divided between AWS and customers.
+AWS Responsibility (Security OF the Cloud)
+
+    Protects cloud infrastructure, hardware, software, networking, and facilities
+    Ensures data center security and compliance
+
+Your Responsibility (Security IN the Cloud)
+
+    Encrypt your data
+    Configure network security (firewalls)
+    Manage identity and access (IAM)
+    Patch operating systems
+    Implement application-level security

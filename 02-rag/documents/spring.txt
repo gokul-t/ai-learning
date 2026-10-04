@@ -1,0 +1,31 @@
+The Spring Framework is a popular, open-source Java application framework designed to simplify the development of robust, enterprise-level Java applications. It provides a comprehensive infrastructure model so that developers can focus on business logic rather than low-level plumbing.
+Key Core Concepts
+• Inversion of Control (IoC): Spring takes over the responsibility of creating, configuring, and managing the lifecycle of application objects (known as Spring Beans), rather than forcing the developer to manage them manually.
+• Dependency Injection (DI): A subset of IoC where Spring automatically provides required dependencies to classes. This shifts object creation outside of the class, promoting loose coupling and making applications much easier to test and maintain.
+• Aspect-Oriented Programming (AOP): Allows developers to separate cross-cutting concerns (like logging, security, and transaction management) from the main business logic, leading to cleaner code.
+Structure & Common Ecosystem Projects
+The ecosystem is modular, meaning developers can pull in only the specific modules they need. Major modules and extension projects include:
+• Spring Web MVC: Provides a structured Model-View-Controller architecture for building scalable web applications and REST APIs.
+• Spring Boot: An extension that introduces "convention-over-configuration", allowing developers to spin up production-ready, standalone Spring applications with minimal initial setup.
+• Spring Security: A highly customizable framework that handles authentication, authorization, and protection against common security vulnerabilities.
+• Spring Data: Simplifies database access and integrates seamlessly with ORM tools like Hibernate and JPA.
+
+The Spring Framework provides a comprehensive programming and configuration model for modern Java-based enterprise applications - on any kind of deployment platform.
+
+A key element of Spring is infrastructural support at the application level: Spring focuses on the "plumbing" of enterprise applications so that teams can focus on application-level business logic, without unnecessary ties to specific deployment environments.
+Support Policy and Migration
+
+For information about minimum requirements, guidance on upgrading from earlier versions and support policies, please check out the official Spring Framework wiki page
+Features
+
+    Core technologies: dependency injection, events, resources, i18n, validation, data binding, type conversion, SpEL, AOP.
+
+    Testing: mock objects, TestContext framework, Spring MVC Test, WebTestClient.
+
+    Data Access: transactions, DAO support, JDBC, ORM, Marshalling XML.
+
+    Spring MVC and Spring WebFlux web frameworks.
+
+    Integration: remoting, JMS, JCA, JMX, email, tasks, scheduling, cache and observability.
+
+    Languages: Kotlin, Groovy, dynamic languages.
