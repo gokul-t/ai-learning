@@ -1,6 +1,11 @@
 # Pytorch ROCm Installation Guide for AMD GPUs
 
 ```sh
+export HSA_OVERRIDE_GFX_VERSION=11.0.0
+export HIP_VISIBLE_DEVICES=0
+export MIOPEN_DEBUG_CONV_IMMED_FIND=0
+export MIOPEN_DEBUG_DISABLE_ASM_KERNELS=1
+
 # 1. Create a dedicated folder inside your large home partition
 mkdir -p $HOME/uv_large_tmp 
 
@@ -18,4 +23,10 @@ uv pip install --no-cache-dir torch torchvision --index-url https://download.pyt
 
 # 4. Clean up custom staging area
 rm -rf $HOME/uv_large_tmp
+
+# 5. Run the python program
+uv run python generate.py
 ```
+
+```
+
