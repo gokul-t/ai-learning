@@ -1,3 +1,4 @@
+from datasets import Dataset
 from unsloth import FastModel
 from trl import SFTTrainer, SFTConfig
 
@@ -35,42 +36,21 @@ dataset = [
     },
 ]
 
-
-# --- Formatting function ---
-def formatting_func(
-    example: Dict[str, str], prompt_style: str = "instruction"
-) -> Tuple[str, str]:
-    """
-    Convert a dataset example into (prompt, completion) pair suitable for training an instruct-style LM.
-
-    Args:
-      example: dict with at least 'input' and 'output' keys.
-      prompt_style: one of:
-        - "instruction": explicit instruction + separator
-        - "chat": a simple two-turn chat format (User / Assistant)
-        - "single": a single concatenated string with a separator token
-
-    Returns:
-      (prompt, completion) where prompt is fed to the model and completion is the target continuation.
-    """
-    inp = example.get("input", "").strip()
-    out = example.get("output", "").strip()
-
-    if prompt_style == "chat":
-        prompt = f"User: {inp}\nAssistant:"
-        completion = f" {out}"
-    elif prompt_style == "single":
-        prompt = f"{inp}\n\n### Response:\n"
-        completion = f"{out}"
-    else:  # default to "instruction"
-        prompt = f"Instruction:\n{inp}\n\nResponse:"
-        completion = f" {out}"
-
-    return prompt, completion
+training_dataset = Dataset.from_list(
+    [
+        {
+            "messages": [
+                {"role": "user", "content": example["input"]},
+                {"role": "assistant", "content": example["output"]},
+            ]
+        }
+        for example in dataset
+    ]
+)
 
 
 model, tokenizer = FastModel.from_pretrained(
-    model_name="unsloth/SmolLM2-1.7B-Instruct",
+    model_name=model_name,
     max_seq_length=2048,
     load_in_4bit=True,
 )
@@ -84,16 +64,20 @@ model = FastModel.get_peft_model(
 
 trainer = SFTTrainer(
     model=model,
-    tokenizer=tokenizer,
-    train_dataset=dataset,
-    formatting_func=formatting_func,
+    processing_class=tokenizer,
+    train_dataset=training_dataset,
     args=SFTConfig(
         per_device_train_batch_size=1,
         gradient_accumulation_steps=4,
         max_steps=60,
         output_dir="outputs",
+        max_length=2048,
         report_to="none",
     ),
 )
 
 trainer_stats = trainer.train()
+
+final_model_dir = "outputs/final"
+trainer.save_model(final_model_dir)
+tokenizer.save_pretrained(final_model_dir)

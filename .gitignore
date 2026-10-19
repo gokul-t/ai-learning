@@ -2,3 +2,5 @@
 **/chroma_db/*
 **/.venv/*
 **/unsloth_compiled_cache/*
+**/outputs/
+.idea/

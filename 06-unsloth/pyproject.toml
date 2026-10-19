@@ -3,5 +3,23 @@ name = "06-unsloth"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.12"
-dependencies = []
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "datasets",
+    "torch==2.14.1+rocm7.14; sys_platform == 'linux'",
+    "torchvision==0.29.1+rocm7.14; sys_platform == 'linux'",
+    "trl",
+    "unsloth",
+]
+
+[[tool.uv.index]]
+name = "pytorch-rocm"
+url = "https://download.pytorch.org/whl/rocm7.14/"
+default = true
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple/"
+
+[tool.uv]
+index-strategy = "unsafe-best-match"
