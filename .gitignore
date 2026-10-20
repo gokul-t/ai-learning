@@ -1,6 +1,8 @@
 **/__pycache__/*
+*.egg-info/
 **/chroma_db/*
 **/.venv/*
 **/unsloth_compiled_cache/*
 **/outputs/
 .idea/
+.env
