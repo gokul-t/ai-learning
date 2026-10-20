@@ -1,7 +1,10 @@
-import ollama
+from ai_learning.core.clients import ollama_client
+from ai_learning.core.config import config
+from ai_learning.core.logging import setup_logging
 
+logger = setup_logging()
 
-def run_chat_cli(model_name="qwen3.5:0.8b"):
+def run_chat_cli(model_name=config.DEFAULT_MODEL):
     messages = [{"role": "system", "content": "You are a helpful assistant."}]
     print(f"Using model: {model_name}")
     print("Type '/exit' to quit the chat.")
@@ -21,7 +24,8 @@ def run_chat_cli(model_name="qwen3.5:0.8b"):
                 continue
             else:
                 messages.append({"role": "user", "content": user_input})
-                stream = ollama.chat(model=model_name, messages=messages, stream=True)
+                # Use shared client instead of direct ollama call
+                stream = ollama_client.client.chat(model=model_name, messages=messages, stream=True)
                 print("Assistant:", flush=True)
                 assistant_response = ""
                 thinking_printed = False

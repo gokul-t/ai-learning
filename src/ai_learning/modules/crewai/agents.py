@@ -1,27 +1,13 @@
-# Title: Recipe Generator and Nutrition Analyzer
-#
-# Description:
-# This script reinforces the "Sequential Workflow" concept with a new domain: Cooking.
-# 1. Agent 1 (Chef): Creates something new (a recipe).
-# 2. Agent 2 (Nutritionist): Analyzes the output of Agent 1.
-#
-# This pattern (Creator -> Analyst) is extremely common in AI applications.
-#
-# Installation:
-# pip install streamlit crewai langchain-community
-#
-# How to run:
-# mise exec -- streamlit run main.py
-
 import streamlit as st
 from crewai import Agent, Task, Crew
+from ai_learning.core.config import config
 
 st.title("Recipe Generator and Nutrition Analyzer")
 
 # Input for recipe idea (e.g., "A high-protein vegan breakfast")
 recipe_prompt = st.text_area(label="Enter a recipe idea:")
 button = st.button("Generate Recipe")
-llm = "ollama/qwen3.5:0.8b"
+llm = f"ollama/{config.DEFAULT_MODEL}"
 
 if button and recipe_prompt:
     # --- Step 1: Define Agents (Creator & Analyst) ---

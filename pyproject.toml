@@ -1,0 +1,50 @@
+[project]
+name = "ai-learning"
+version = "0.1.0"
+description = "Multi-module AI learning project with AMD GPU support"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pydantic",
+    "python-dotenv",
+    "httpx",
+    "typer",
+]
+
+[dependency-groups]
+ollama = [
+    "ollama",
+    "typing-inspection",
+]
+rag = [
+    "chromadb",
+    "langchain-chroma",
+    "langchain",
+    "langchain-community",
+    "langchain-ollama",
+    "langchain-text-splitters",
+    "pypdf",
+]
+crewai = [
+    "crewai",
+    "streamlit",
+]
+ml = [
+    "datasets",
+    "trl",
+    "unsloth",
+    "torch==2.14.1+rocm7.14",
+    "torchvision==0.29.1+rocm7.14",
+]
+
+[[tool.uv.index]]
+name = "pytorch-rocm"
+url = "https://download.pytorch.org/whl/rocm7.14/"
+default = true
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple/"
+
+[tool.uv]
+index-strategy = "unsafe-best-match"
