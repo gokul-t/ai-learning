@@ -22,7 +22,7 @@ def train():
     trainer.train()
 
 @app.command()
-def inference():
+def unsloth():
     """Run inference using the Unsloth model."""
     inference.run_inference()
 

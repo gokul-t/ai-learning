@@ -83,7 +83,7 @@ uv run python -m ai_learning.cli train
 ### Model Evaluation (Unsloth)
 Evaluate a inference model using the Unsloth evaluation pipeline:
 ```bash
-uv run python -m ai_learning.cli inference
+uv run python -m ai_learning.cli unsloth
 ```
 
 ### Image Generation (HuggingFace)
